@@ -56,9 +56,9 @@ end
   end
   
   methods(Static, Access = protected)
-  %'slexVarSizeMATLABSystemGetDBIDsSysObj', ...    
       function header = getHeaderImpl
           header = matlab.system.display.Header(...
+              mfilename('class'),...
               'Title', 'Load Simulation access parameters', ...
               'Text',  'Find units that match the given pattern in their names');
       end
@@ -155,7 +155,7 @@ tStart = tic;
               
               % TO DO: read only the sample generated during the last
               % sample period
-              queryParams.startDate = floor(now);
+              queryParams.startDate = addtodate(now,-1,'hour');
               % retrieve values from database
 %               keyboard
               for i =1:nIDs
